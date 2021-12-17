@@ -1,0 +1,57 @@
+Mapping
+
+useState for blank array: const [users, setUsers] = useState([]);
+
+async function:
+  const getUsers = async () => {
+    const response = await fetch(url);
+    const users = await response.json();
+    console.log(users);
+    setUsers(users);
+  };
+
+useEffect that runs only on load:
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  array is for updates that run the useEffect, so if you put users in there the useEffect will run when
+  users is updated
+
+{objectToBeMapped.map((nameForEachIteration) => {
+          const { props } = user;
+          return (
+            <div key={prop.id}>
+              <img src={avatar_url} alt={login} />
+              <div>
+                <h4>{login}</h4>
+                <a href={html_url}>Profile</a>
+              </div>
+            </div>
+          );
+        })}
+
+short circuit conditional: {boolean ? if true render : if false render}
+
+ternary operators: 
+
+const firstValue = text || "hello world"; if text is false/empty render "hello world"
+const secondValue = text && "hello world"; if text is true/filled render text and "hello world"
+
+example of input taking target value to submit e is for event
+<input
+    type="text"
+    id="firstName"
+    name="firstName"
+    value={firstName}
+    onChange={(e) => {
+        setFirstName(e.target.value);
+        }}
+/>
+
+spread operator used to retain original values as well
+use of spread operator:
+const person = { firstName, email };
+      setPeople((people) => {
+        return [...people, person];
+      });
