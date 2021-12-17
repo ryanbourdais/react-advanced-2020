@@ -15,8 +15,8 @@ useEffect that runs only on load:
     getUsers();
   }, []);
 
-  array is for updates that run the useEffect, so if you put users in there the useEffect will run when
-  users is updated
+array is for updates that run the useEffect, so if you put users in there the useEffect will run when
+users is updated
 
 {objectToBeMapped.map((nameForEachIteration) => {
           const { props } = user;
@@ -55,3 +55,27 @@ const person = { firstName, email };
       setPeople((people) => {
         return [...people, person];
       });
+
+ types of useStates:
+    const [name, setName] = useState("");
+    const [list, setList] = useState([]);
+    const [isEditing, setIsEditing] = useState(false);
+    const [editId, setEditId] = useState(null);
+    const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
+
+
+    useRef preserves value, DOES NOT trigger re-render, and targets DOM nodes/elements
+    because useRef does not rerender we can use it in place of a useEffect and we can use useEffects
+    on original render without a dependency array because useRef does not trigger re-render
+ex:
+const refContainer = useRef(null);
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(refContainer.current.value);
+    refContainer.current.value = null;
+  };
+
+<form className="form" onSubmit={handleSubmit}>
+    <input type="text" ref={refContainer} />
+</form>
