@@ -1,4 +1,8 @@
-Mapping
+arrow functions are used when data is passed into functions as arguments and invoking
+is used when we dont need to pass an argument
+ex:
+arrow: const function = (arg) => {} onClick={() => function(arg)}
+invoke: const function = () => {} onClick{function}
 
 useState for blank array: const [users, setUsers] = useState([]);
 
@@ -17,6 +21,8 @@ useEffect that runs only on load:
 
 array is for updates that run the useEffect, so if you put users in there the useEffect will run when
 users is updated
+
+Mapping:
 
 {objectToBeMapped.map((nameForEachIteration) => {
           const { props } = user;
@@ -70,6 +76,17 @@ const person = { firstName, email };
 ex:
 const refContainer = useRef(null);
 
+!IMPORTANT!
+
+per Daniel:
+
+You'll very rarely ever use useRef. useRef allows you to access info about a 
+component that you wouldn't be able to otherwise, such as the width and height 
+of the component. It also allows you to use certain functions on the component, 
+such as focus() which puts focus on an input element (like when you left click on
+a text field).
+
+
 const handleSubmit = (e) => {
     e.preventDefault();
     console.log(refContainer.current.value);
@@ -79,3 +96,41 @@ const handleSubmit = (e) => {
 <form className="form" onSubmit={handleSubmit}>
     <input type="text" ref={refContainer} />
 </form>
+
+useReducer usage:
+
+reducer.js:
+
+export const reducer = (state, action) => {
+  if (action.type === "ADD_ITEM") {
+    const newPeople = [...state.people, action.payload];
+    return {
+      ...state,
+      people: newPeople,
+      isModalOpen: true,
+      modalContent: "value added",
+    };}
+  throw new Error("no matching action type"); };
+
+index.js:
+
+const defaultState = {
+  people: data,
+  isModalOpen: false,
+  modalContent: "hello world", };
+
+usage: 
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+    if (name) {
+      const newItem = { id: new Date().getTime().toString(), name };
+      dispatch({ type: "ADD_ITEM", payload: newItem });
+    } else {
+      dispatch({ type: "NO_VALUE" });
+ }};
+
+<form onSubmit={handleSubmit} className="form">
+<button onClick={() => dispatch({ type: "REMOVE_ITEM", payload: person.id })}>
+remove
+</button>
