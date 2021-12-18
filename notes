@@ -134,3 +134,32 @@ const handleSubmit = (e) => {
 <button onClick={() => dispatch({ type: "REMOVE_ITEM", payload: person.id })}>
 remove
 </button>
+
+useContext usage:
+
+const PersonContext = React.createContext();
+
+<PersonContext.Provider value={{ removePerson, people }}>
+        <List />
+</PersonContext.Provider>
+
+const List = () => {
+  const mainData = useContext(PersonContext);
+  return (
+    <>
+      {mainData.people.map((person) => {
+        return <SinglePerson key={person.id} {...person} />;
+      })}
+    </>
+
+const SinglePerson = ({ id, name }) => {
+  const { removePerson } = useContext(PersonContext);
+  console.log(removePerson);
+  return (
+    <div className="item">
+      <h4>{name}</h4>
+      <button onClick={() => removePerson(id)}>remove</button>
+    </div>
+
+useContext is used to pass props down to lower levels for use in components
+nested in a snippet wrapped with a context provider
