@@ -207,3 +207,20 @@ if (action.type === "DECREASE") {
       cart: tempCart,
     };
   }
+
+  adding proptypes to js:
+
+Product.propTypes = {
+  image: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+};
+Product.defaultProps = {
+  name: "default name",
+  price: 3.99,
+  image: defaultImage,
+};
+
+or operator for object rendering defaults:
+ <img src={url || defaultImage} alt={name || "default name"} />
+if url DNE then defaultImage is rendered.
