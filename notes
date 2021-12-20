@@ -224,3 +224,53 @@ Product.defaultProps = {
 or operator for object rendering defaults:
  <img src={url || defaultImage} alt={name || "default name"} />
 if url DNE then defaultImage is rendered.
+
+Example of React Router:
+
+index.js:
+
+<Router>
+      <Navbar />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/About">
+          <About />
+        </Route>
+        <Route path="/People">
+          <People />
+        </Route>
+        <Route path="/person/:id" children={<Person />}></Route>
+        <Route path="*">
+          <Error />
+        </Route>
+      </Switch>
+</Router>
+
+Navbar.js:
+<nav>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/people">People</Link>
+        </li>
+      </ul>
+</nav>
+
+ex of mapping a link: 
+
+ {people.map((person) => {
+        return (
+          <div key={person.id} className="item">
+            <h4>{person.name}</h4>
+            <Link to={`/person/${person.id}`}>Learn More</Link>
+          </div>
+        );
+      })}
+      
